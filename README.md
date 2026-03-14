@@ -1,151 +1,118 @@
 # Airtable HR Onboarding Automation Dashboard
 
-This project demonstrates how Airtable can be used to build an HR onboarding management system that combines structured data handling, formula based data processing, automation workflows, and a visual dashboard for HR teams.
+This project demonstrates how Airtable can be used to build an HR onboarding management system that combines structured data handling, formula-based data processing, automation workflows, and a visual dashboard for HR teams. The system processes new hire data, categorizes candidates, triggers automated workflows for high-value hires, and provides a centralized dashboard interface for HR visibility.
 
-The system processes new hire data, categorizes candidates, triggers automated workflows for high value hires, and provides a centralized dashboard interface for HR visibility.
+The objective of this exercise is to showcase the practical use of Airtable formulas, automations, and interfaces to solve real-world HR operational challenges.
 
-The objective of this exercise is to showcase the practical use of Airtable formulas, automations, and interfaces to solve real world HR operational challenges.
+## Project Outcome
 
----
-
-# Project Outcome
-
-The implemented solution transforms raw onboarding data into a structured workflow for HR operations.
-
-Key outcomes include
-
-• Automated cleaning and categorization of new hire data using Airtable formulas  
-• Identification of high value hires through calculated fields  
-• Automation triggers for important onboarding events  
-• A centralized HR dashboard for monitoring onboarding progress  
-• Improved operational visibility for HR teams managing multiple hires  
+The implemented solution transforms raw onboarding data into a structured workflow for HR operations. Key outcomes include:
+* **Automated cleaning and categorization** of new hire data using Airtable formulas.
+* **Identification of high-value hires** through calculated fields.
+* **Automation triggers** for important onboarding events.
+* **A centralized HR dashboard** for monitoring onboarding progress.
+* **Improved operational visibility** for HR teams managing multiple hires.
 
 The system demonstrates how Airtable can act as a lightweight operations platform for HR onboarding processes.
 
 ---
 
-# System Overview
+## System Overview
 
-The onboarding system is built entirely using Airtable's native capabilities.
-
-Data Layer  
-Airtable tables store records for new hires and onboarding data.
-
-Logic Layer  
-Formula fields process and categorize employee information.
-
-Automation Layer  
-Airtable automations trigger actions when specific conditions are met.
-
-Interface Layer  
-Airtable Interface Designer provides a dashboard for HR teams to monitor onboarding activity.
+The onboarding system is built entirely using Airtable's native capabilities:
+* **Data Layer:** Airtable tables store records for new hires and onboarding data.
+* **Logic Layer:** Formula fields process and categorize employee information.
+* **Automation Layer:** Airtable automations trigger actions when specific conditions are met.
+* **Interface Layer:** Airtable Interface Designer provides a dashboard for HR teams to monitor onboarding activity.
 
 ---
 
-# Task 1 Outcome  
-## Data Cleaning and Categorization
+## Task 1: Data Cleaning and Categorization
 
 Formulas were implemented to transform and standardize new hire records submitted through the onboarding table.
 
-Capabilities implemented
-
-• Cleaning inconsistent text inputs  
-• Categorizing hires by role and department  
-• Tracking onboarding progress through status fields  
-• Assigning candidate priority levels based on predefined logic  
+### Capabilities Implemented:
+* **Full Name Integration:** `{First Name} & " " & {Last Name}` seamlessly combines names.
+* **Email Standardization:** `LOWER(TRIM({Email Input}))` ensures consistent format.
+* **Status Categorization:** Identifies "High Value", "Medium Value", and "Low Value" candidates based on onboarding equipment spend (>$1000 = High, $500-$999 = Medium, <$500 = Low).
+* **Onboarding Tracking:** `DATETIME_DIFF(TODAY(), {Created Date}, 'days')` tracks pipeline progress.
 
 These formulas help convert raw onboarding submissions into structured and actionable HR data.
 
 ---
 
-# Task 2 Outcome  
-## Automation and HR Dashboard
+## Task 2: Automation and HR Dashboard
 
-An automation workflow was implemented to handle high value hires.
+### Automation Workflow
+An automation workflow was implemented to handle high-value hires:
+1. **Trigger:** Detect records classified as "High Value" hires.
+2. **Conditional Branching:** Verifies if an email is present.
+   - *If Email Available:* Notifies HR and logs the record in the **High Value Tracking** table.
+   - *If Email Missing:* Sends an alert that the high-value hire lacks a valid email.
+3. **Tracking Log:** Automates entry into the High Value Tracking table for ongoing monitoring.
 
-Automation behavior
-
-• Detect records classified as "High Value" hires  
-• Trigger an automation when the condition is met  
-• Notify HR teams or update internal tracking fields  
-• Ensure priority hires receive faster onboarding attention  
-
-An HR dashboard interface was also built to provide real time operational visibility.
-
-Dashboard features
-
-• Overview of all new hires  
-• Filters for department and onboarding status  
-• Identification of high value candidates  
-• Monitoring onboarding pipeline progress  
-
-The interface allows HR teams to quickly assess onboarding status and prioritize actions.
+### HR Dashboard Interface
+Built using Airtable Interface Designer to provide real-time operational visibility:
+* **Summary Tiles:** Displays instant counts of High, Medium, and Low Value hires.
+* **Filtered Grid View:** Focused view strictly on High Value hires for immediate HR review.
+* **Detail View:** Complete onboarding profiles allowing staff to view Name, Email, Equipment Spend, Status, and Days Since Created.
 
 ---
 
-# Airtable Features Used
+##  Implementation Screenshots
 
-This project utilizes several Airtable capabilities.
+The `assets/screenshots/` directory contains comprehensive visual proof of the Airtable base operations, field configurations, automation logic, and interface designs. 
 
-Formulas  
-Used to clean and categorize onboarding data.
+### Selected Previews:
 
-Automations  
-Used to trigger actions when specific conditions occur.
+<details>
+<summary>Click to view all screenshot references</summary>
 
-Interfaces  
-Used to build a visual dashboard for HR operations.
-
-Views and Filters  
-Used to segment onboarding records for easier monitoring.
-
----
-
-# Repository Structure
-
-```
-airtable-hr-onboarding-automation-dashboard
-
-submissions
- ├── task1_solution.md
- ├── task2_solution.md
-
-assets
- ├── screenshots
- ├── dashboard-preview
-
-INSTRUCTIONS.md
-TASK_1.md
-TASK_2.md
-SUBMISSION_TEMPLATE.md
-README.md
-```
-
----
-
-# Screenshots
-
-Include screenshots demonstrating the following
-
-• Airtable base and table structure  
-• Formula fields used for data categorization  
-• Automation workflow configuration  
-• HR dashboard interface  
+- ![Screenshot](<./assets/screenshots/Screenshot 2026-03-12 214119.png>)
+- ![Screenshot](<./assets/screenshots/Screenshot 2026-03-12 214524.png>)
+- ![Screenshot](<./assets/screenshots/Screenshot 2026-03-12 214740.png>)
+- ![Screenshot](<./assets/screenshots/Screenshot 2026-03-12 214749.png>)
+- ![Screenshot](<./assets/screenshots/Screenshot 2026-03-12 214830.png>)
+- ![Screenshot](<./assets/screenshots/Screenshot 2026-03-12 215022.png>)
+- ![Screenshot](<./assets/screenshots/Screenshot 2026-03-12 215111.png>)
+- ![Screenshot](<./assets/screenshots/Screenshot 2026-03-12 215304.png>)
+- ![Screenshot](<./assets/screenshots/Screenshot 2026-03-12 215322.png>)
+- ![Screenshot](<./assets/screenshots/Screenshot 2026-03-12 220021.png>)
+- ![Screenshot](<./assets/screenshots/Screenshot 2026-03-12 220630.png>)
+- ![Screenshot](<./assets/screenshots/Screenshot 2026-03-12 221032.png>)
+- ![Screenshot](<./assets/screenshots/Screenshot 2026-03-12 221235.png>)
+- ![Screenshot](<./assets/screenshots/Screenshot 2026-03-12 221329.png>)
+- ![Screenshot](<./assets/screenshots/Screenshot 2026-03-12 221408.png>)
+- ![Screenshot](<./assets/screenshots/Screenshot 2026-03-12 221547.png>)
+- ![Screenshot](<./assets/screenshots/Screenshot 2026-03-12 221553.png>)
+- ![Screenshot](<./assets/screenshots/Screenshot 2026-03-12 221611.png>)
+- ![Screenshot](<./assets/screenshots/Screenshot 2026-03-12 222135.png>)
+- ![Screenshot](<./assets/screenshots/Screenshot 2026-03-12 222140.png>)
+- ![Screenshot](<./assets/screenshots/Screenshot 2026-03-12 222346.png>)
+- ![Screenshot](<./assets/screenshots/Screenshot 2026-03-12 222727.png>)
+- ![Screenshot](<./assets/screenshots/Screenshot 2026-03-12 222821.png>)
+- ![Screenshot](<./assets/screenshots/Screenshot 2026-03-12 224742.png>)
+- ![Screenshot](<./assets/screenshots/Screenshot 2026-03-12 224814.png>)
+- ![Screenshot](<./assets/screenshots/Screenshot 2026-03-12 224838.png>)
+- ![Screenshot](<./assets/screenshots/Screenshot 2026-03-12 224844.png>)
+- ![Screenshot](<./assets/screenshots/Screenshot 2026-03-14 132659.png>)
+</details>
 
 ---
 
-# Potential Improvements
+##  Potential Improvements
 
-Future improvements for this system may include
-
-• Integration with external HRIS systems  
-• Slack or email alerts for onboarding milestones  
-• Automated onboarding task tracking  
-• Employee lifecycle management beyond onboarding  
-• HR analytics and reporting dashboards  
+Future enhancements for this system may include:
+* Integration with external HRIS systems.
+* Slack or email alerts for onboarding milestones.
+* Automated onboarding task tracking.
+* Employee lifecycle management beyond onboarding.
+* HR analytics and reporting dashboards.
 
 ---
 
-# Author
+##  Author
 
-This project was developed as part of an Airtable skills assessment focused on data processing, workflow automation, and dashboard creation for HR onboarding management.
+**Touseef Hanif**
+* LinkedIn: https://www.linkedin.com/in/touseefhanif
+* GitHub: https://github.com/touseefh/hr-onboarding-automation-system
