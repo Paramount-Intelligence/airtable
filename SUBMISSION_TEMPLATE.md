@@ -3,8 +3,9 @@
 ## Candidate Information
 - Full Name: Omer Faisal
 - Email: official.omerfaisal@gmail.com
-- LinkedIn or Portfolio: 
-- Submission Date: 2026-03-14
+- LinkedIn or Portfolio: https://www.linkedin.com/in/omer-faisal-ab382425b/
+- GitHub: https://github.com/Omer-443
+- Submission Date: 2026-03-15
 
 ## Task 1: Intermediate Airtable Skills
 
@@ -48,18 +49,18 @@ Calculates integer days between the Created Date and the current time.
 **Action 2 - Log to Tracking Table**:
 - Create a new record in the `Tracking Table`:
   - Hire Name: `{Full Name}`
-  - Priority Level: `"Urgent"`
-  - Logged At: `{Created Date}`
-  - Link to New Hires: Link to the original record
+## Task 2: Automation Steps
+1. **Trigger**: New record added to "New Hires" table.
+2. **Action**: LLM processes the role and extracts required equipment.
+3. **Action**: Slack notification sent to IT and Hiring Manager.
+4. **Action**: Welcome email drafted in Gmail.
 
-**Action 3 - Conditional Branching**:
-- **If** `Cleaned Email` is empty OR does not contain `"@"`:
-  - Create a task in Airtable for HR: "Manually verify email for {Full Name}"
-  - Skip sending the email notification
-- **Else**: Proceed with the standard Slack/Email notification
+## Task 3: Interface Design
+Created a streamlined "Manager Dashboard" in Airtable Interfaces to track onboarding status and equipment approval at a glance.
 
-### 2. Interface Design
-The interface is designed as an HR dashboard with three main sections:
+## Assumptions
+- Special characters in emails are limited to brackets and parentheses as per provided examples.
+- Equipment categories are pre-defined in the base schema.
 
 1. **Summary Tiles (Top Row)**: Three tiles showing counts of High/Medium/Low Value hires using `COUNTIF` logic filtered on the `Status Categorization` field. Color-coded: Red for High, Yellow for Medium, Green for Low.
 
