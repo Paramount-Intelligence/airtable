@@ -14,11 +14,11 @@ The implemented solution transforms raw onboarding data into a structured workfl
 
 Key outcomes include
 
-• Automated cleaning and categorization of new hire data using Airtable formulas  
-• Identification of high value hires through calculated fields  
-• Automation triggers for important onboarding events  
-• A centralized HR dashboard for monitoring onboarding progress  
-• Improved operational visibility for HR teams managing multiple hires  
+- Automated cleaning and categorization of new hire data using Airtable formulas
+- Identification of high value hires through calculated fields
+- Automation triggers for important onboarding events
+- A centralized HR dashboard for monitoring onboarding progress
+- Improved operational visibility for HR teams managing multiple hires
 
 The system demonstrates how Airtable can act as a lightweight operations platform for HR onboarding processes.
 
@@ -28,91 +28,142 @@ The system demonstrates how Airtable can act as a lightweight operations platfor
 
 The onboarding system is built entirely using Airtable's native capabilities.
 
-Data Layer  
-Airtable tables store records for new hires and onboarding data.
+Data Layer
+Airtable tables store records for new hires and onboarding data. The New Hires table contains five sample records with fields for First Name, Last Name, Email Input, Amount Spent on Equipment, and Created Date.
 
-Logic Layer  
-Formula fields process and categorize employee information.
+Logic Layer
+Formula fields process and categorize employee information using four custom formulas for full name generation, email cleaning, status categorization, and days since record creation.
 
-Automation Layer  
-Airtable automations trigger actions when specific conditions are met.
+Automation Layer
+Airtable automations trigger actions when specific conditions are met. The High Value Hire Notification automation detects high value hires and triggers conditional email notifications and record logging.
 
-Interface Layer  
-Airtable Interface Designer provides a dashboard for HR teams to monitor onboarding activity.
+Interface Layer
+Airtable Interface Designer provides a dashboard for HR teams to monitor onboarding activity. The HR Onboarding Dashboard displays summary metrics and filtered views of new hire data.
 
 ---
 
-# Task 1 Outcome  
+# Task 1 Outcome
 ## Data Cleaning and Categorization
 
 Formulas were implemented to transform and standardize new hire records submitted through the onboarding table.
 
-Capabilities implemented
+### Formulas Implemented
 
-• Cleaning inconsistent text inputs  
-• Categorizing hires by role and department  
-• Tracking onboarding progress through status fields  
-• Assigning candidate priority levels based on predefined logic  
+**Full Name**
+```
+{First Name} & " " & {Last Name}
+```
+Concatenates first and last name fields to generate a clean display name.
 
-These formulas help convert raw onboarding submissions into structured and actionable HR data.
+**Cleaned Email**
+```
+TRIM(LOWER({Email Input}))
+```
+Removes extra spaces and converts email to lowercase for consistent formatting.
+
+**Status Categorization**
+```
+IF(
+    {Amount Spent on Equipment} > 1000,
+    "High Value",
+    IF(
+        {Amount Spent on Equipment} >= 500,
+        "Medium Value",
+        "Low Value"
+    )
+)
+```
+Categorizes each hire into High Value, Medium Value, or Low Value based on equipment spending.
+
+**Days Since Created**
+```
+DATETIME_DIFF(TODAY(), {Created Date}, 'days')
+```
+Calculates how many days have passed since the record was created.
 
 ---
 
-# Task 2 Outcome  
+# Task 2 Outcome
 ## Automation and HR Dashboard
+
+### Automation — High Value Hire Notification
 
 An automation workflow was implemented to handle high value hires.
 
-Automation behavior
+Trigger
+When a record matches conditions — Status Categorization contains High Value.
 
-• Detect records classified as "High Value" hires  
-• Trigger an automation when the condition is met  
-• Notify HR teams or update internal tracking fields  
-• Ensure priority hires receive faster onboarding attention  
+Conditional Branch 1 — If Cleaned Email is not empty
+- Sends a welcome notification email to the hire
+- Logs the record in the High Value Tracking table with Full Name, Email, Equipment Amount, and Date Logged
 
-An HR dashboard interface was also built to provide real time operational visibility.
+Conditional Branch 2 — If Cleaned Email is empty
+- Sends an alert email to HR at hr@company.com
+- Message notifies HR that a high value hire record is missing an email address and requires manual review
 
-Dashboard features
+### High Value Tracking Table
 
-• Overview of all new hires  
-• Filters for department and onboarding status  
-• Identification of high value candidates  
-• Monitoring onboarding pipeline progress  
+A dedicated tracking table was created to log all high value hires automatically.
 
-The interface allows HR teams to quickly assess onboarding status and prioritize actions.
+Fields
+- Full Name
+- Email
+- Equipment Amount
+- Date Logged
+
+### HR Dashboard Interface
+
+An interface dashboard was created using Airtable Interface Designer named HR Onboarding Dashboard.
+
+Dashboard Components
+
+Summary Tiles
+- High Value hire count
+- Medium Value hire count
+- Low Value hire count
+
+Filtered List View
+- Shows only High Value hires from the New Hires table
+- Allows HR to quickly identify priority onboarding cases
+
+New Hires Data Grid
+- Complete list of all hires with key fields visible
+- Fields shown: First Name, Last Name, Email Input, Amount Spent on Equipment
 
 ---
 
 # Airtable Features Used
 
-This project utilizes several Airtable capabilities.
+Formulas
+Used to clean and categorize onboarding data across four formula fields.
 
-Formulas  
-Used to clean and categorize onboarding data.
+Automations
+Used to trigger conditional email notifications and record creation when high value hires are detected.
 
-Automations  
-Used to trigger actions when specific conditions occur.
+Interfaces
+Used to build a visual dashboard with summary tiles and filtered grid views for HR operations.
 
-Interfaces  
-Used to build a visual dashboard for HR operations.
-
-Views and Filters  
-Used to segment onboarding records for easier monitoring.
+Views and Filters
+Used to segment onboarding records for easier monitoring of high value candidates.
 
 ---
 
 # Repository Structure
-
 ```
-airtable-hr-onboarding-automation-dashboard
+hr-onboarding-automation-system
 
 submissions
  ├── task1_solution.md
- ├── task2_solution.md
+ └── task2_solution.md
 
 assets
  ├── screenshots
- ├── dashboard-preview
+ │   ├── airtable_table_structure.png
+ │   ├── automation_trigger.png
+ │   ├── automation_workflow.png
+ │   ├── tracking_table.png
+ │   └── dashboard_interface.png
+ └── dashboard-preview
 
 INSTRUCTIONS.md
 TASK_1.md
@@ -125,12 +176,22 @@ README.md
 
 # Screenshots
 
-Include screenshots demonstrating the following
+Screenshots included in the repository demonstrate
 
-• Airtable base and table structure  
-• Formula fields used for data categorization  
-• Automation workflow configuration  
-• HR dashboard interface  
+- Airtable base and table structure with all formula fields
+- Automation trigger configuration showing Status Categorization condition
+- Complete automation workflow with conditional branches
+- High Value Tracking table with logged records
+- HR Onboarding Dashboard interface
+
+---
+
+# Assumptions
+
+- Equipment spending is used as the primary indicator of onboarding priority
+- Email notifications are used as the main HR alert mechanism
+- Sample data was used for demonstration purposes
+- Airtable free plan was used during development which limits some advanced features such as emailing non-collaborators and certain interface components
 
 ---
 
@@ -138,14 +199,17 @@ Include screenshots demonstrating the following
 
 Future improvements for this system may include
 
-• Integration with external HRIS systems  
-• Slack or email alerts for onboarding milestones  
-• Automated onboarding task tracking  
-• Employee lifecycle management beyond onboarding  
-• HR analytics and reporting dashboards  
+- Integration with external HRIS systems
+- Slack or email alerts for onboarding milestones
+- Automated onboarding task tracking
+- Employee lifecycle management beyond onboarding
+- HR analytics and reporting dashboards
 
 ---
 
 # Author
+
+Candidate: Huzaifa Ahmed
+Email: huzaifafabi15@gmail.com
 
 This project was developed as part of an Airtable skills assessment focused on data processing, workflow automation, and dashboard creation for HR onboarding management.
