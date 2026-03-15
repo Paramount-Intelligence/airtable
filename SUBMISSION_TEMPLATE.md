@@ -1,10 +1,10 @@
 # Candidate Submission Template
 
 ## Candidate Information
-- Full Name:
-- Email:
-- LinkedIn or Portfolio:
-- Submission Date:
+- Full Name:Mohammad Irfan
+- Email:Irfaanexe@gmail.com
+- LinkedIn or Portfolio: https://www.linkedin.com/in/mohammad-irfaands/
+- Submission Date: 16-03-2026
 
 ## Task 1: Intermediate Airtable Skills
 
