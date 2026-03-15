@@ -196,7 +196,7 @@ IF(
 - The dashboard screenshot clearly covers summary tiles and a filtered grid, but a standalone detail-view screenshot is not included.
 - The tracking table is confirmed by the `Create record` action label `In High Value Tracking`.
 
-### 5. Optional Notes
+### 5. Notes
 
 - The captured Airtable build uses `Email` and `Amount Spent on Equipment` as field names, which differ slightly from the prompt wording.
 - The Task 1 `Days Since Created` formula is documented from observed table output because its formula editor was not captured.
