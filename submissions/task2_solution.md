@@ -20,3 +20,5 @@ The automation relies on the **Status Categorization** formula from Task 1 to tr
 ## 4. Assumptions
 * I assumed that "High Value" hires require a faster response time, justifying the use of instant Slack notifications.
 * I assumed the "Tracking Table" should be used for auditing purposes rather than daily active management.
+
+<img width="1376" height="861" alt="image" src="https://github.com/user-attachments/assets/1acad1ca-1f37-4633-8a45-d236d3bda72f" />
